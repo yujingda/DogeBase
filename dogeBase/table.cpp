@@ -1,5 +1,5 @@
 #include "table.h"
-bool table::open(const char* dbname, bool readOnly)
+/*bool table::open(const char* dbname, bool readOnly)
 {
     fd = ::open(dbname, readOnly ? O_RDONLY : O_RDWR);
     if (fd < 0)
@@ -31,3 +31,4 @@ bool table::growing(int size)
 {
     return false;
 }
+*/

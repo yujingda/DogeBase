@@ -36,6 +36,9 @@
     <ClInclude Include="record.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="dbHead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tablespace.cpp">
@@ -54,6 +57,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="record.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fileOption.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="initial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="buffManage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pageOption.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

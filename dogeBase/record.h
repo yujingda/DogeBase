@@ -1,3 +1,4 @@
+#pragma warning(disable:4996)
 #pragma once
 #include<string.h>
 #include"table.h"
@@ -53,8 +54,10 @@ void record::copyArray(char* A, int &ax, char* B, int &bx, int len)
 
 /**
 * int 1 float 2 long 3 char 4 varchar 5 double 6 date 7
+* 本函数用于从输入的数据项中创建出一条记录，并将其写入缓冲区之中
+* date类型的数据，规定其格式为：YYYYMMDD
 */
-int record::createOneRecord(int onekind=-1, void* readData, int RDP, int lengthVar=-1)
+int record::createOneRecord(int onekind, void* readData, int RDP, int lengthVar=-1)
 {
 	int countSM = 0;
 	int TRPosition = 1;
@@ -65,17 +68,27 @@ int record::createOneRecord(int onekind=-1, void* readData, int RDP, int lengthV
 		switch (kindofData)
 		{
 		case 1:
-			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 4); break;
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 4); TRPosition += 4; break;
 			//strcat(tempRecord);
 		case 2:
-			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 4); break;
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 4); TRPosition += 4; break;
 		case 3:
-			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 8); break;
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 8); TRPosition += 8; break;
 		case 4:
-			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, lengthVar); break;
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, lengthVar); TRPosition += lengthVar; break;
 		case 5:
-
-			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 8); break;
+			char* tl = (char*)lengthVar;
+			int tmp = 0;
+			copyArray(tempRecord, TRPosition, tl, tmp, 4);//这里是想要把varchar当前的长度写入文件之中，但是可能会出现大小端的问题
+			TRPosition += 4;
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 8); 
+			TRPosition += 8;
+			break;
+		case 6:
+			copyArray(tempRecord, TRPosition, (char*)readData, RDPosition, 8); TRPosition += 8; break;
+		case 7:
+			//数据输入格式未知，先放一放
+			printf("Date is not sheji!\n");  break;
 		default:
 			break;
 		}

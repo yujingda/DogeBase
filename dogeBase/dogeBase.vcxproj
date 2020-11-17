@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="block.h" />
+    <ClInclude Include="dbHead.h" />
     <ClInclude Include="qujian.h" />
     <ClInclude Include="record.h" />
     <ClInclude Include="segment.h" />
@@ -149,11 +150,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="buffManage.cpp" />
+    <ClCompile Include="fileOption.cpp" />
+    <ClCompile Include="initial.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="pageOption.cpp" />
     <ClCompile Include="qujian.cpp" />
     <ClCompile Include="record.cpp" />
     <ClCompile Include="segment.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="tablespace.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
